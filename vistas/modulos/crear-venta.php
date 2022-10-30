@@ -1,6 +1,7 @@
 <div class="contenido container mt-2">
     <h2 class="text-center">Crear Venta</h2>
-
+    <BR>
+    <BR>
 
     <form role="form" method="POST" action="">
 
@@ -11,16 +12,19 @@
             <!-- EMPLEADO VENTA -->
             <div class="form-group row">
                 <div class="col-sm-4">
+                <center><p>EMPLEADO</p></center>
                     <div class="input-group">
+            
                         <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
                         <input type="text" class="form-control input-lg" required readonly
                             value="<?= $_SESSION['nombre']?>">
-                            <input type="hidden" name="docIdEmpleado" required value="<?= $_SESSION['docId']?>">
+                            <input type="hidden" name="docIdEmpleado"  required value="<?= $_SESSION['docId']?>">
                     </div>
                 </div>
 
                 <!-- CLIENTE VENTA -->
                 <div class="col-sm-4">
+                <center><p>CLIENTE VENTA</p></center>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                         <select class="form-control input-lg" name="clienteVenta" id="clienteVenta" required>
@@ -48,6 +52,7 @@
                     $cons = $consecutivo['consecutivo'] + 1;
                 ?>
                 <div class="col-sm-4">
+                <center><p>CONSECUTIVO</p></center>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                         <input type="number" name="consecutivo" required value="<?= $cons?>" class="form-control input-lg" id="consecutivoVenta" required readonly>
@@ -60,6 +65,7 @@
             <div class="form-group row">
 
                 <div class="col-sm-6">
+                <center><p>PRODUCTO</p></center>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-check"></i></span>
                         <select class="form-control input-lg" id="producto">
@@ -81,6 +87,7 @@
                 </div>
                 <!-- PRECIO -->
                 <div class="col-sm-2">
+                <center><p>PRECIO</p></center>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                         <input type="number" class="form-control input-lg" id="precioProducto" readonly>
@@ -88,6 +95,7 @@
                 </div>
                 <!-- CANTIDAD -->
                 <div class="col-sm-2">
+                <center><p>CANTIDAD</p></center>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span>
                         <input type="number" class="form-control input-lg" id="cantidadProducto">
@@ -95,6 +103,7 @@
                 </div>
 
                 <div class="col-sm-2">
+                    <BR>   <BR>
                     <button type="button" class="btn btn-primary btnAgregarProducto">Agregar producto</button>
                 </div>
 

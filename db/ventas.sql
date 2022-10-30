@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-09-2019 a las 14:23:45
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 30-10-2022 a las 02:08:21
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -21,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `ventas`
 --
-
-CREATE DATABASE ventas;
-USE ventas;
 
 -- --------------------------------------------------------
 
@@ -42,7 +38,7 @@ CREATE TABLE `tblcliente` (
 --
 
 INSERT INTO `tblcliente` (`docId`, `nombre`, `apellido`) VALUES
-(990, 'Periquito', 'Perez'),
+(990, 'Emmanuel', 'Perez'),
 (1234, 'juan', 'Perez'),
 (9898, 'nicolas', 'Suarez'),
 (1234565, 'Susana', 'Perez');
@@ -65,9 +61,9 @@ CREATE TABLE `tblempleado` (
 --
 
 INSERT INTO `tblempleado` (`docId`, `nombre`, `apellido`, `clave`) VALUES
-(0, 'Nicolas', 'Suzarez', '$2y$10$oBqTVjM01UiEaKpPQBXMeuvGbb2iN/Bgmw4Kno0rfQThLit.ZBpvq'),
+(0, 'Emmanuel', 'Suzarez', '$2y$10$oBqTVjM01UiEaKpPQBXMeuvGbb2iN/Bgmw4Kno0rfQThLit.ZBpvq'),
 (99, 'editado', 'prueba', '$2y$10$IQWQrJ3BxlnV8nDpSLg1KuGHaxF1fE/m6joM5WLDKYXEFIluJrhAC'),
-(1234, 'Jose', 'Juan', '$2y$10$uuHy6X5QCx7H4Q6JsK6gUOcokeYRKNXj3VppuxnoekSwFChClJP.q'),
+(1234, 'Emmanuel', 'velasquez', '$2y$10$uuHy6X5QCx7H4Q6JsK6gUOcokeYRKNXj3VppuxnoekSwFChClJP.q'),
 (9898, 'juan', 'perez', '$2y$10$r4zpVOSuF83bGR5OAMK1LOwGTFAdQs6QVdG9cIel3ku1aRXlnx0MC');
 
 -- --------------------------------------------------------
@@ -101,7 +97,32 @@ INSERT INTO `tblfactura` (`consecutivo`, `fecha`, `empleado`, `cliente`, `total`
 (10, '2019-09-15 02:52:05', 0, 1234, 84252),
 (11, '2019-09-15 02:52:15', 0, 1234, 84252),
 (12, '2019-09-15 04:38:49', 1234, 990, 421260),
-(13, '2019-09-15 04:39:38', 1234, 9898, 4633860);
+(13, '2019-09-15 04:39:38', 1234, 9898, 4633860),
+(14, '2022-10-26 05:27:13', 1234, 990, 119000),
+(15, '2022-10-26 05:28:58', 1234, 1234565, 202300),
+(16, '2022-10-29 07:25:16', 1234, 990, 1190000),
+(17, '2022-10-29 09:01:14', 1234, 990, 261800),
+(18, '2022-10-29 09:01:50', 1234, 1234, 11900),
+(19, '2022-10-29 09:02:22', 1234, 1234565, 357000),
+(20, '2022-10-29 09:04:39', 1234, 1234, 0),
+(21, '2022-10-29 09:16:35', 1234, 9898, 249900),
+(22, '2022-10-29 09:41:11', 1234, 990, 11900),
+(23, '2022-10-29 09:42:27', 1234, 9898, 357000),
+(24, '2022-10-29 09:42:47', 1234, 990, 3927000),
+(25, '2022-10-29 17:52:36', 1234, 990, 1178100),
+(26, '2022-10-29 17:54:46', 1234, 990, 11900),
+(27, '2022-10-29 17:55:40', 1234, 1234, 119000),
+(28, '2022-10-29 17:56:30', 1234, 1234, 119000),
+(29, '2022-10-29 17:57:27', 1234, 1234, 84252),
+(30, '2022-10-29 17:59:01', 1234, 1234565, 178500),
+(31, '2022-10-29 18:00:34', 1234, 1234, 54),
+(32, '2022-10-29 18:30:47', 1234, 1234, 246),
+(33, '2022-10-29 18:31:18', 1234, 1234565, 11900),
+(34, '2022-10-29 18:32:11', 1234, 9898, 84252),
+(35, '2022-10-29 18:32:39', 1234, 1234, 84252),
+(36, '2022-10-29 18:33:13', 1234, 9898, 84252),
+(37, '2022-10-29 23:48:59', 1234, 1234, 431256),
+(38, '2022-10-29 23:54:29', 1234, 990, 18088);
 
 -- --------------------------------------------------------
 
@@ -140,7 +161,33 @@ INSERT INTO `tblfacturaproductos` (`consFactura`, `codProducto`, `cantidad`, `va
 (10, '789654', 1, 70800),
 (11, '789654', 1, 70800),
 (12, '789654', 5, 70800),
-(13, '789654', 55, 70800);
+(13, '789654', 55, 70800),
+(14, '1', 10, 10000),
+(15, '1', 17, 10000),
+(16, '1', 100, 10000),
+(17, '1', 22, 10000),
+(18, '1', 1, 10000),
+(19, '770890', 2, 150000),
+(21, '1', 21, 10000),
+(22, '1', 1, 10000),
+(23, '770890', 2, 150000),
+(24, '770890', 22, 150000),
+(25, '1', 99, 10000),
+(26, '1', 1, 10000),
+(27, '1', 10, 10000),
+(28, '1', 10, 10000),
+(29, '789654', 1, 70800),
+(30, '770890', 1, 150000),
+(31, '2', 2, 23),
+(32, '2', 9, 23),
+(33, '1', 1, 10000),
+(34, '789654', 1, 70800),
+(35, '789654', 1, 70800),
+(36, '789654', 1, 70800),
+(37, '770890', 1, 150000),
+(37, '789654', 3, 70800),
+(38, '1', 1, 10000),
+(38, '2', 2, 2600);
 
 -- --------------------------------------------------------
 
@@ -152,18 +199,23 @@ CREATE TABLE `tblproductos` (
   `codigo` varchar(20) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `stock` int(11) NOT NULL,
-  `valor` int(11) NOT NULL
+  `valor` int(11) NOT NULL,
+  `referencia` varchar(50) NOT NULL,
+  `peso` int(11) NOT NULL,
+  `categoria` varchar(17) NOT NULL,
+  `fecha_creacion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblproductos`
 --
 
-INSERT INTO `tblproductos` (`codigo`, `nombre`, `stock`, `valor`) VALUES
-('1', 'Camisa', 307, 10000),
-('2', 'tenis', 818, 20000),
-('770890', 'Pantalla 34P', 89, 150000),
-('789654', 'Teclado', 14, 70800);
+INSERT INTO `tblproductos` (`codigo`, `nombre`, `stock`, `valor`, `referencia`, `peso`, `categoria`, `fecha_creacion`) VALUES
+('1', 'moras', 9, 10000, 'n23', 200, 'cafes', '2022-10-14'),
+('2', 'Gaseosa', 8, 2600, 'd22', 100, 'gff', '2022-10-12'),
+('24', 'Pan crema', 25, 1000, 'ret45', 100, 'Panes', '2022-10-06'),
+('770890', 'milo', 61, 150000, 'f44', 4, 'cafes', '1900-01-09'),
+('789654', 'pasteles', 45, 70800, 'd33', 24, 'panaderia', '1900-01-06');
 
 --
 -- Índices para tablas volcadas

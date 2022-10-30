@@ -45,8 +45,6 @@
   </table>
 </div>
 
-
-
 <!-- MODAL AGREGAR EMPLEADO -->
 <div id="modalAgregarEmpleado" class="modal fade" role="dialog">
   <div class="modal-dialog">

@@ -71,20 +71,19 @@ class ControladorVentas{
                         echo '<script> 
                         swal({
                             title: "Factura genera correctamente",
-                            text: "¿Desea imprimir la factura?",
                             type: "success",
-                            showCancelButton: true,
+
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
-                            cancelButtonText: "No",
-                            confirmButtonText: "Si, imprimir factura"
+                 
+                            confirmButtonText: "ok"
                         }).then((result) => {
                             if(result.value){
-                                window.open("vistas/libs/factura.php?consecutivo='.$consecutivo.'", "_blank");
-                                window.location = "crear-venta";
+                               
+                                window.location = "ventas";
                             }else{
                                 
-                                window.location = "crear-venta";
+                                window.location = "ventas";
                             }
                         });
                             </script>'

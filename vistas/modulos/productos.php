@@ -1,5 +1,5 @@
-<?php 
-    $productos = new ControladorProductos(); 
+<?php
+$productos = new ControladorProductos();
 ?>
 <div class="contenido container mt-2">
     <h2 class="text-center">Administrar Productos</h2>
@@ -15,10 +15,14 @@
         <thead>
             <tr>
                 <th scope="col" style="width:10px">#</th>
-                <th scope="col">Codigo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Valor</th>
+                <th scope="col">ID</th>
+                <th scope="col">NOMBRE DEL PRODUCTO</th>
+                <th scope="col">REFERENCIA</th>
+                <th scope="col">PESO</th>
+                <th scope="col">CATEGORIA</th>
+                <th scope="col">STOCK</th>
+                <th scope="col">PRECIO</th>
+                <th scope="col">FECHA DE CREACION</th>
                 <th scope="col" style="width:100px">Acciones</th>
             </tr>
         </thead>
@@ -26,24 +30,27 @@
             <?php
             $item = null;
             $valor = null;
-            $mostrarProductos = ControladorProductos::ctrMostrarProductos($item,$valor);
+            $mostrarProductos = ControladorProductos::ctrMostrarProductos($item, $valor);
 
-            foreach($mostrarProductos as $key => $value):
-                $precio = number_format($value['valor'],0,",",".");
+            foreach ($mostrarProductos as $key => $value) :
+                $precio = number_format($value['valor'], 0, ",", ".");
 
             ?>
                 <tr>
-                    <th scope="row"><?= $key+1?></th>
-                    <td><?= $value['codigo']?></td>
-                    <td><?= $value['nombre']?></td>
-                    <td><?= $value['stock']?></td>
-                    <td><?= "$ ".$precio?></td>
+                    <th scope="row"><?= $key + 1 ?></th>
+                    <td><?= $value['codigo'] ?></td>
+                    <td><?= $value['nombre'] ?></td>
+                    <td><?= $value['referencia'] ?></td>
+                    <td><?= $value['peso'] ?></td>
+                    <td><?= $value['categoria'] ?></td>
+                    <td><?= $value['stock'] ?></td>
+                    <td><?= "$ " . $precio ?></td>
+                    <td><?= $value['fecha_creacion'] ?></td>
+
                     <td>
                         <div class="btn-group">
-                            <button class="btn btn-warning btnEditarProducto mr-4" idProducto="<?= $value['codigo']?>" data-toggle="modal"
-                                data-target="#modalEditarProducto"><i class="fa fa-pencil"></i></button>
-                            <button class="btn btn-danger btnBorrarProducto ml-4" idProducto="<?= $value['codigo']?>"><i
-                                    class="fa fa-times"></i></button>
+                            <button class="btn btn-warning btnEditarProducto mr-4" idProducto="<?= $value['codigo'] ?>" data-toggle="modal" data-target="#modalEditarProducto"><i class="fa fa-pencil"></i></button>
+                            <button class="btn btn-danger btnBorrarProducto ml-4" idProducto="<?= $value['codigo'] ?>"><i class="fa fa-times"></i></button>
                         </div>
                     </td>
                 </tr>
@@ -70,18 +77,52 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="number" class="form-control input-lg" name="nuevoCodigo"
-                                    placeholder="Ingresar Codigo" required>
+                                <input type="number" class="form-control input-lg" name="nuevoCodigo"min="0" placeholder="Ingresar Codigo" required>
                             </div>
                         </div>
 
-
-                        <!-- NOMBRE -->
+                        <!-- FECHA CREACION -->
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control input-lg" name="nuevoNombre"
-                                    placeholder="Ingresar Nombre" required>
+                                <input type="Date" class="form-control input-lg" name="nuevoFecha" placeholder="Ingresar Fecha de creacion" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- NOMBRE -->
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" name="nuevoNombre" placeholder="Ingresar Nombre" required>
+                                </div>
+                            </div>
+
+                            <!-- PESO -->
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="number" class="form-control input-lg" name="nuevoPeso"min="0" placeholder="Ingresar Peso" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <!-- REFERENCIA -->
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" name="nuevoReferencia" placeholder="Ingresar Referencia" required>
+                                </div>
+                            </div>
+
+
+                            <!-- CATEGORIA -->
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" name="nuevoCategoria" placeholder="Ingresar Categoria" required>
+                                </div>
                             </div>
                         </div>
 
@@ -90,8 +131,7 @@
                             <div class="col-xs-12 col-sm-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                                    <input type="number" class="form-control input-lg" name="nuevoStock" min="0"
-                                        placeholder="Stock" step="any" required>
+                                    <input type="number" class="form-control input-lg" name="nuevoStock" min="0" placeholder="Stock" step="any" required>
                                 </div>
                             </div>
 
@@ -100,8 +140,7 @@
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                                        <input type="number" class="form-control input-lg" name="nuevoPrecio" min="0"
-                                            placeholder="Precio" step="any" required>
+                                        <input type="number" class="form-control input-lg" name="nuevoPrecio" min="0" placeholder="Precio" step="any" required>
                                     </div>
                                 </div>
                             </div>
@@ -109,9 +148,6 @@
 
                     </div>
                 </div>
-
-
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
                     <button type="submit" class="btn btn-primary">Guardar Producto</button>
@@ -119,9 +155,9 @@
 
             </form>
             <?php
-                $crearProducto = new ControladorProductos();
-                $crearProducto -> ctrCrearProducto();
-                
+            $crearProducto = new ControladorProductos();
+            $crearProducto->ctrCrearProducto();
+
             ?>
         </div>
     </div>
@@ -141,40 +177,77 @@
 
                         <!-- CODIGO -->
                         <div class="form-group">
+                        <center><p>CODIGO</p></center>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="number" class="form-control input-lg" id="editarCodigo" name="editarCodigo"
-                                    placeholder="Ingresar Codigo" readonly required>
+                                <input type="number" class="form-control input-lg" id="editarCodigo" name="editarCodigo" placeholder="Ingresar Codigo" readonly required>
+                            </div>
+                        </div>
+              
+                        <div class="form-group">
+                        <center><p>FECHA CREACION</p></center>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="Date" class="form-control input-lg" id="editarFechaCreacion" name="editarFechaCreacion" placeholder="Ingresar Fecha Creacion" required>
                             </div>
                         </div>
 
-
                         <!-- NOMBRE -->
                         <div class="form-group">
+                        <center><p>NOMBRE PRODUCTO</p></center>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre"
-                                    placeholder="Ingresar Nombre" required>
+                                <input type="text" class="form-control input-lg" id="editarNombre" name="editarNombre" placeholder="Ingresar Nombre" required>
+                            </div>
+                        </div>
+
+                        <!-- PESO -->
+                        <div class="form-group">
+                        <center><p>PESO</p></center>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" class="form-control input-lg" id="editarPeso" name="editarPeso" placeholder="Ingresar Peso" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+
+                            <!-- CATEGORIA -->
+                            <div class="col-xs-12 col-sm-6">
+                            <center><p>CATEGORIA</p></center>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" id="editarCategoria" name="editarCategoria" placeholder="Ingresar Categoria" required>
+                                </div>
+                            </div>
+
+
+                            <!-- REFERENCIA -->
+                            <div class="col-xs-12 col-sm-6">
+                            <center><p>REFERENCIA</p></center>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" id="editarReferencia" name="editarReferencia" placeholder="Ingresar Referencia" required>
+                                </div>
                             </div>
                         </div>
 
                         <!-- STOCK -->
                         <div class="form-group row">
                             <div class="col-xs-12 col-sm-6">
+                            <center><p>STOCK</p></center>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                                    <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" min="0"
-                                        placeholder="Stock" step="any" required>
+                                    <input type="number" class="form-control input-lg" id="editarStock" name="editarStock" min="0" placeholder="Stock" step="any" required>
                                 </div>
                             </div>
 
                             <!-- PRECIO -->
                             <div class="form-group row">
+                            <center><p>PRECIO</p></center>
                                 <div class="col-xs-12 col-sm-6">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span>
-                                        <input type="number" class="form-control input-lg" id="editarPrecio"name="editarPrecio" min="0"
-                                            placeholder="Precio" step="any" required>
+                                        <input type="number" class="form-control input-lg" id="editarPrecio" name="editarPrecio" min="0" placeholder="Precio" step="any" required>
                                     </div>
                                 </div>
                             </div>
@@ -187,15 +260,15 @@
                 </div>
 
             </form>
-             <?php
-                $editarProducto = new ControladorProductos();
-                $editarProducto -> ctrEditarPoducto();                
-            ?> 
+            <?php
+            $editarProducto = new ControladorProductos();
+            $editarProducto->ctrEditarPoducto();
+            ?>
         </div>
     </div>
 </div>
 
 <?php
-    $borrarProducto = new ControladorProductos();
-    $borrarProducto -> ctrBorrarPoducto();                
-?> 
+$borrarProducto = new ControladorProductos();
+$borrarProducto->ctrBorrarPoducto();
+?>

@@ -1,3 +1,4 @@
+
 <div class="contenido container mt-2">
   <h2 class="text-center">Administrar Clientes</h2>
 
@@ -44,8 +45,6 @@
   </table>
 </div>
 
-
-
 <!-- MODAL AGREGAR Cliente -->
 <div id="modalAgregarCliente" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -90,9 +89,6 @@
 
           </div>
         </div>
-
-        
-
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
           <button type="submit" class="btn btn-primary">Guardar Cliente</button>

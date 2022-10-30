@@ -20,7 +20,9 @@
                 <th scope="col">Empleado</th>
                 <th scope="col">Total</th>
                 <th scope="col">Fecha</th>
-                <th scope="col" style="width:100px">Acciones</th>
+      
+         
+              
             </tr>
         </thead>
         <tbody>
@@ -30,19 +32,16 @@
             foreach ($ventas as $key => $value):        
             $total = number_format($value['total'],0,",",".");
             ?>
-           
+        
                 <tr>
-                    
                     <td><?= $value['consecutivo']?></td>
                     <td><?= $value['nombreCliente']?></td>
                     <td><?= $value['nombreEmpleado']?></td>
                     <td><?=  "$"." ".$total?></td>
                     <td><?= $value['fecha']?></td>
-                    <td><a href="vistas/libs/factura.php?consecutivo=<?= $value['consecutivo']?>" target="_blank">
-                         <button class="btn btn-primary btnImprimirFactura ml-4" idFactura="<?= $value['consecutivo']?>"><i class="fa fa-print"></i></button>
-                         </a>
-                        </div>
-                    </td>
+          
+               
+                    <!--  -->
                 </tr>
             <?php endforeach ?>
      

@@ -18,6 +18,11 @@ $(document).on("click",".btnEditarProducto",function(){
             $("#editarNombre").val(respuesta["nombre"]);
             $("#editarStock").val(respuesta["stock"]);
             $("#editarPrecio").val(respuesta["valor"]);
+            $("#editarReferencia").val(respuesta["referencia"]);
+            $("#editarPeso").val(respuesta["peso"]);
+            $("#editarCategoria").val(respuesta["categoria"]);
+            $("#editarFechaCreacion").val(respuesta["fecha_creacion"]);
+
         },
         error: function (xhr, textStatus, errorMessage) {
 

@@ -16,33 +16,13 @@ class ModeloReportes{
         return $stmt->fetch();
     }
 
-    
     static public function mdlClienteMasFrecuente(){
-    $stmt = Conexion::conectar()->prepare("SELECT CONCAT(cl.nombre,' ',cl.apellido) AS nombre, COUNT(f.consecutivo) AS cantidad FROM tblfactura as f INNER JOIN tblcliente as cl on f.cliente = cl.docId GROUP BY CONCAT(cl.nombre,' ',cl.apellido) ORDER BY cantidad DESC limit 1 ");
+    $stmt = Conexion::conectar()->prepare("SELECT MAX(stock) FROM tblproductos GROUP BY nombre  ORDER BY `MAX(stock)` DESC");
 
     $stmt->execute();
     return $stmt->fetch();
 
     }
 
-    static public function mdlClienteMenosFrecuente(){
-        $stmt = Conexion::conectar()->prepare("SELECT CONCAT(cl.nombre,' ',cl.apellido) AS nombre, COUNT(f.consecutivo) AS cantidad FROM tblfactura as f INNER JOIN tblcliente as cl on f.cliente = cl.docId GROUP BY CONCAT(cl.nombre,' ',cl.apellido) ORDER BY cantidad limit 1 ");
-
-        $stmt->execute();
-        return $stmt->fetch();
-    }
-
-    static public function mdlMejorEmpleado(){
-        $stmt = Conexion::conectar()->prepare("SELECT CONCAT(em.nombre,' ',em.apellido) AS nombre, COUNT(f.consecutivo) AS cantidad FROM tblfactura AS f INNER JOIN tblempleado AS em on f.empleado = em.docId GROUP BY CONCAT(em.nombre,' ',em.apellido) ORDER BY cantidad DESC  limit 1");
-
-        $stmt->execute();
-        return $stmt->fetch();
-    }
-
-    static public function mdlPeorEmpleado(){
-        $stmt = Conexion::conectar()->prepare("SELECT CONCAT(em.nombre,' ',em.apellido) AS nombre, COUNT(f.consecutivo) AS cantidad FROM tblfactura AS f INNER JOIN tblempleado AS em on f.empleado = em.docId GROUP BY CONCAT(em.nombre,' ',em.apellido) ORDER BY cantidad limit 1");
-
-        $stmt->execute();
-        return $stmt->fetch();
-    }
+   
 }

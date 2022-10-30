@@ -1,33 +1,41 @@
 <?php
 
-class ControladorProductos{
+class ControladorProductos
+{
 
     // MOSTRAR PRODUCTOS
-    static public function ctrMostrarProductos($item,$valor){
+    static public function ctrMostrarProductos($item, $valor)
+    {
         $tabla = "tblproductos";
 
-        $respuesta = ModeloProductos::mdlMostrarProductos($tabla,$item,$valor);
+        $respuesta = ModeloProductos::mdlMostrarProductos($tabla, $item, $valor);
 
         return $respuesta;
     }
 
-    static public function ctrCrearProducto(){
-        if(isset($_POST['nuevoCodigo'])){
-            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["nuevoNombre"]) &&
-            preg_match('/^[0-9]+$/',$_POST["nuevoStock"]) &&
-            preg_match('/^[0-9]+$/',$_POST["nuevoCodigo"]) &&
-            preg_match('/^[0-9]+$/',$_POST["nuevoPrecio"])){
+    static public function ctrCrearProducto()
+    {
+        if (isset($_POST['nuevoCodigo'])) {
+            if (
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
+                preg_match('/^[0-9]+$/', $_POST["nuevoStock"]) &&
+                preg_match('/^[0-9]+$/', $_POST["nuevoCodigo"]) 
+            ) {
 
                 $tabla = "tblproductos";
                 $datos = array(
                     "codigo" => $_POST['nuevoCodigo'],
                     "nombre" => $_POST['nuevoNombre'],
                     "stock" => $_POST['nuevoStock'],
-                    "valor" => $_POST['nuevoPrecio']
+                    "valor" => $_POST['nuevoPrecio'],
+                    "referencia" => $_POST['nuevoReferencia'],
+                    "peso" => $_POST['nuevoPeso'],
+                    "categoria" => $_POST['nuevoCategoria'],
+                    "fecha_creacion" => $_POST['nuevoFecha']
                 );
 
-                $respuesta = ModeloProductos::mdlCrearProducto($tabla,$datos);
-                if($respuesta == "ok"){
+                $respuesta = ModeloProductos::mdlCrearProducto($tabla, $datos);
+                if ($respuesta == "ok") {
                     echo '<script> 
                             swal({
                                 type: "success",
@@ -39,10 +47,9 @@ class ControladorProductos{
                                     window.location ="productos";
                                 }
                             });
-                        </script>'
-                    ;
-                }else{
-                    echo'<script>
+                        </script>';
+                } else {
+                    echo '<script>
 
                     swal({
                           type: "error",
@@ -57,12 +64,12 @@ class ControladorProductos{
     
                   </script>';
                 }
-            }else{
-                echo'<script>
+            } else {
+                echo '<script>
 
                 swal({
                     type: "error",
-                        title: "¡El producto no puede ir vacío o llevar caracteres especiales!",
+                        title: "¡El codigo,nombre ya existe!",
                         showConfirmButton: true,
                         confirmButtonText: "Cerrar"
                         }).then(function(result){
@@ -76,23 +83,30 @@ class ControladorProductos{
         }
     }
 
-    static public function ctrEditarPoducto(){
-        if(isset($_POST['editarCodigo'])){
-            if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/',$_POST["editarNombre"]) &&
-            preg_match('/^[0-9]+$/',$_POST["editarStock"]) &&
-            preg_match('/^[0-9]+$/',$_POST["editarCodigo"]) &&
-            preg_match('/^[0-9]+$/',$_POST["editarPrecio"])){
+    static public function ctrEditarPoducto()
+    {
+        if (isset($_POST['editarCodigo'])) {
+            if (
+                preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarNombre"]) &&
+                preg_match('/^[0-9]+$/', $_POST["editarStock"]) &&
+                preg_match('/^[0-9]+$/', $_POST["editarCodigo"]) 
+
+            ) {
 
                 $tabla = "tblproductos";
                 $datos = array(
                     "codigo" => $_POST['editarCodigo'],
                     "nombre" => $_POST['editarNombre'],
                     "stock" => $_POST['editarStock'],
-                    "valor" => $_POST['editarPrecio']
+                    "valor" => $_POST['editarPrecio'],
+                    "referencia" => $_POST['editarReferencia'],
+                    "peso" => $_POST['editarPeso'],
+                    "categoria" => $_POST['editarCategoria'],
+                    "fecha_creacion" => $_POST['editarFechaCreacion']
                 );
 
-                $respuesta = ModeloProductos::mdlEditarProducto($tabla,$datos);
-                if($respuesta == "ok"){
+                $respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
+                if ($respuesta == "ok") {
                     echo '<script> 
                             swal({
                                 type: "success",
@@ -104,10 +118,9 @@ class ControladorProductos{
                                     window.location ="productos";
                                 }
                             });
-                        </script>'
-                    ;
-                }else{
-                    echo'<script>
+                        </script>';
+                } else {
+                    echo '<script>
 
                     swal({
                           type: "error",
@@ -122,8 +135,9 @@ class ControladorProductos{
     
                   </script>';
                 }
-            }else{
-                echo'<script>
+            } else {
+
+                echo '<script>
 
                 swal({
                     type: "error",
@@ -139,18 +153,17 @@ class ControladorProductos{
                 </script>';
             }
         }
-        
-
     }
 
-    static public function ctrBorrarPoducto(){
-        if(isset($_GET['codigo'])){
+    static public function ctrBorrarPoducto()
+    {
+        if (isset($_GET['codigo'])) {
 
             $tabla = "tblproductos";
             $datos = $_GET['codigo'];
             $respuesta = ModeloProductos::mdlBorrarProducto($tabla, $datos);
 
-            if($respuesta == "ok"){
+            if ($respuesta == "ok") {
                 echo '<script> 
                         swal({
                             type: "success",
@@ -162,11 +175,8 @@ class ControladorProductos{
                                 window.location ="productos";
                             }
                         });
-                    </script>'
-                ;
+                    </script>';
             }
         }
     }
-
 }
-

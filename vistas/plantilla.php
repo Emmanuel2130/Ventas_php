@@ -83,7 +83,7 @@
 
   ?>
 
-  <script src="vistas/js/empleado.js"> </script>
+
   <script src="vistas/js/clientes.js"> </script>
   <script src="vistas/js/productos.js"> </script>
   <script src="vistas/js/ventas.js"> </script>
